@@ -1,0 +1,61 @@
+import 'package:body_weight_tracker/form_fields/weight_form_field.dart';
+import 'package:flutter/material.dart';
+
+class SetTargetForm extends StatefulWidget {
+  @override
+  _SetTargetFormState createState() => _SetTargetFormState();
+}
+
+class _SetTargetFormState extends State<SetTargetForm> {
+  GlobalKey<FormState> _addWeightRecordFormKey = GlobalKey<FormState>();
+  double? weight;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          "Set New Target",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Column(
+          children: [
+            Form(
+              key: _addWeightRecordFormKey,
+              child: Column(
+                children: [
+                  WeightFormField(
+                    onSaved: (value) {
+                      weight = double.parse(value!);
+                    },
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+        TextButton(
+          onPressed: () {
+            final bool? isValid =
+                _addWeightRecordFormKey.currentState?.validate();
+            if (isValid ?? false) {
+              _addWeightRecordFormKey.currentState?.save();
+              if (weight != null)
+                Navigator.pop(
+                  context,
+                  weight,
+                );
+            }
+          },
+          child: Text("Set"),
+        ),
+      ],
+    );
+  }
+}
