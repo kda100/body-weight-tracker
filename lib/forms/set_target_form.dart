@@ -16,10 +16,7 @@ class _SetTargetFormState extends State<SetTargetForm> {
       children: [
         Text(
           "Set New Target",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 16),
         ),
         SizedBox(
           height: 10,

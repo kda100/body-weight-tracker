@@ -31,7 +31,7 @@ class _AddWeightRecordFormState extends State<AddWeightRecordForm> {
       children: [
         Text(
           "Add Weight Record",
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 16),
         ),
         SizedBox(
           height: 10,
