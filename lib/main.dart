@@ -47,18 +47,6 @@ class MyPtApp extends StatelessWidget {
             dialogTheme: DialogTheme(
               backgroundColor: ColorPalette.backGroundColor,
             ),
-            elevatedButtonTheme: ElevatedButtonThemeData(
-              style: ButtonStyle(
-                elevation: MaterialStateProperty.all(5),
-                foregroundColor:
-                    MaterialStateProperty.all(ColorPalette.primaryTextColor),
-                backgroundColor:
-                    MaterialStateProperty.all(ColorPalette.primaryColor),
-                minimumSize: MaterialStateProperty.all(
-                  Size(80, 40),
-                ),
-              ),
-            ),
             backgroundColor: ColorPalette.backGroundColor,
             cardTheme: CardTheme(
               color: ColorPalette.backGroundColor,
