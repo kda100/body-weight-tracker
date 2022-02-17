@@ -8,8 +8,9 @@ import 'package:flutter/material.dart';
 
 import 'constants/field_names.dart';
 
+///gives status when uploading weight record to database.
+
 enum UpdateStatus {
-  //gives a status when uploading weight record to database.
   OVERWRITE,
   SUCCESS,
   ERROR,
