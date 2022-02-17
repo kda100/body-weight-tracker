@@ -23,7 +23,7 @@ Future<void> main() async {
 class MyPtApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return KeyboardDismissOnTap(
+    return KeyboardDismissOnTap(  //Keyboard dismisses on tap anywhere in app.
       child: MaterialApp(
         title: Strings.bodyWeightTrackerTitle,
         theme: ThemeData(
