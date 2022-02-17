@@ -20,9 +20,9 @@ enum UpdateStatus {
 
 class BodyWeightTrackerProvider with ChangeNotifier {
   DocumentReference? _targetDocRef = FirebaseFirestore.instance
-      .doc("targets/target"); //DocRef where target will be stored
+      .doc("Your Target Document Reference"); //DocRef where target will be stored
   CollectionReference? _weightRecordsColRef = FirebaseFirestore.instance
-      .collection("weightRecords"); //ColRef where weight records will be store.
+      .collection("Your Weight Records Collection Reference"); //ColRef where weight records will be store.
 
   final List<WeightRecordWithId> _weightRecords =
       []; //store all weight records for given date range.
