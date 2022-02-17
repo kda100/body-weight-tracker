@@ -16,11 +16,11 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(
-    MyPtApp(),
+    BodyWeightTrackerApp(),
   );
 }
 
-class MyPtApp extends StatelessWidget {
+class BodyWeightTrackerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return KeyboardDismissOnTap(  //Keyboard dismisses on tap anywhere in app.
