@@ -16,8 +16,8 @@ enum UpdateStatus {
   ERROR,
 }
 
-///class that contains all the business logic needed for maintaining the state of the body weight tracker.
-///It communicates with the database to read and write data and control state of the UI.
+///class that contains all the business logic needed for maintaining the data and state of the body weight tracker.
+///It communicates with the Cloud Firestore to read and write data and control state of the body weight tracker screen.
 
 class BodyWeightTrackerProvider with ChangeNotifier {
   DocumentReference? _targetDocRef = FirebaseFirestore.instance
