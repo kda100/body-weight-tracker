@@ -305,6 +305,7 @@ class BodyWeightTrackerProvider with ChangeNotifier {
         await _firebaseServices.removeTargetFromFirestore();
     if (updateStatus == UpdateStatus.SUCCESS) {
       _target = null;
+      _targetWeightRecords.clear();
       _adjustMaxAndMinWeightsWithRecords();
       unhighlightDataPoint();
       toggleRefreshChartFlag();
