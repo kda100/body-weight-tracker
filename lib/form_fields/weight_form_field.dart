@@ -27,7 +27,7 @@ class WeightFormField extends StatelessWidget {
           if (value.isEmpty) return 'This field is required';
           if (double.tryParse(value) == null || double.parse(value) < 0)
             return "Please enter a valid weight";
-          if (double.parse(value) > 1500) return "Weight is too big!";
+          if (double.parse(value) > 1000) return "Weight is too big!";
         }
         return null;
       },
