@@ -65,7 +65,7 @@ class BodyWeightTrackerApp extends StatelessWidget {
         supportedLocales: [
           const Locale('en'),
         ],
-        home: ChangeNotifierProvider(
+        home: ChangeNotifierProvider<BodyWeightTrackerProvider>(
           create: (context) => BodyWeightTrackerProvider(),
           child: BodyWeightTrackerScreen(),
         ),
