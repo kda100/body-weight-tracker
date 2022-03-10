@@ -16,7 +16,7 @@ class WeightFormField extends StatelessWidget {
       decoration: InputDecoration(
         errorMaxLines: 2,
         icon: Icon(Icons.fitness_center),
-        labelText: "Weight",
+        labelText: "Weight (kg)",
         hintText: "Weight (kg)",
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Theme.of(context).primaryColor),
