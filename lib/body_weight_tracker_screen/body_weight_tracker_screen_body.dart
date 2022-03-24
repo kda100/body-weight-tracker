@@ -1,3 +1,4 @@
+import 'package:body_weight_tracker/body_weight_tracker_screen/chart_data.dart';
 import 'package:body_weight_tracker/constants/strings.dart';
 import 'package:body_weight_tracker/helpers/datetime_helper.dart';
 import 'package:body_weight_tracker/models/weight_record_with_index.dart';
@@ -22,8 +23,8 @@ class BodyWeightTrackerScreenBody extends StatelessWidget {
           ScrollableDateBar(
             //changes date displayed in scrollable date bar when the date range changes.
             dateWidget: Selector<BodyWeightTrackerProvider, DateTimeRange>(
-              selector: (context, bodyWeightAndStrengthTrackerProvider) =>
-                  bodyWeightAndStrengthTrackerProvider.dateTimeRange,
+              selector: (context, bodyWeightTrackerProvider) =>
+                  bodyWeightTrackerProvider.dateTimeRange,
               builder: (context, dateTimeRange, _) => Text(
                   "${DateTimeHelper.formatDateTimeToDayMonthYearString(dateTimeRange.start)} - ${DateTimeHelper.formatDateTimeToDayMonthYearString(
                     dateTimeRange.end,
@@ -47,81 +48,57 @@ class BodyWeightTrackerScreenBody extends StatelessWidget {
                 // contains target and hte highlighted weight record's date and weight.
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Column(
-                    children: [
-                      Text("Selected Date",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline1
-                              ?.copyWith(fontSize: 16)),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Selector<BodyWeightTrackerProvider,
-                              WeightRecordWithIndex?>(
-                          //changes when the highlighted weight record changes.
-                          selector: (context, trackerProvider) =>
-                              trackerProvider.highlightedRecordPoint,
-                          builder: (context, highlightedDataPoint, _) {
-                            if (highlightedDataPoint?.dateTime != null)
-                              return Text(
-                                DateTimeHelper.formatDateTimeToDDMMYYYYString(
-                                    highlightedDataPoint?.dateTime),
-                                style: Theme.of(context).textTheme.bodyText1,
-                              );
+                  ChartData(
+                    header: "Selected Date",
+                    data: Selector<BodyWeightTrackerProvider,
+                        WeightRecordWithIndex?>(
+                      //changes when the highlighted weight record changes.
+                      selector: (context, trackerProvider) =>
+                          trackerProvider.highlightedRecordPoint,
+                      builder: (context, highlightedDataPoint, _) {
+                        if (highlightedDataPoint?.dateTime != null)
+                          return Text(
+                            DateTimeHelper.formatDateTimeToDDMMYYYYString(
+                                highlightedDataPoint?.dateTime),
+                            style: Theme.of(context).textTheme.bodyText1,
+                          );
 
-                            return SizedBox();
-                          }),
-                    ],
+                        return SizedBox();
+                      },
+                    ),
                   ),
-                  Column(
-                    children: [
-                      Text("Selected Weight",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline1
-                              ?.copyWith(fontSize: 16)),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Selector<BodyWeightTrackerProvider,
-                              WeightRecordWithIndex?>(
-                          selector: (context, trackerProvider) =>
-                              trackerProvider.highlightedRecordPoint,
-                          builder: (context, highlightedDataPoint, _) {
-                            //changes when the highlighted weight record changes.
-                            if (highlightedDataPoint?.weight != null)
-                              return Text(
-                                "${highlightedDataPoint?.weight} kg",
-                                style: Theme.of(context).textTheme.bodyText1,
-                              );
+                  ChartData(
+                    header: "Selected Weight",
+                    data: Selector<BodyWeightTrackerProvider,
+                        WeightRecordWithIndex?>(
+                      selector: (context, trackerProvider) =>
+                          trackerProvider.highlightedRecordPoint,
+                      builder: (context, highlightedDataPoint, _) {
+                        //changes when the highlighted weight record changes.
+                        if (highlightedDataPoint?.weight != null)
+                          return Text(
+                            "${highlightedDataPoint?.weight} kg",
+                            style: Theme.of(context).textTheme.bodyText1,
+                          );
 
-                            return SizedBox();
-                          }),
-                    ],
+                        return SizedBox();
+                      },
+                    ),
                   ),
-                  Column(
-                    children: [
-                      Text("Target",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline1
-                              ?.copyWith(fontSize: 16)),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Selector<BodyWeightTrackerProvider, double?>(
-                          selector: (context, trackerProvider) =>
-                              trackerProvider.target,
-                          builder: (context, target, _) {
-                            //changes when the target changes.
-                            if (target != null)
-                              return Text("$target kg",
-                                  style: Theme.of(context).textTheme.bodyText1);
+                  ChartData(
+                    header: "Target",
+                    data: Selector<BodyWeightTrackerProvider, double?>(
+                      selector: (context, trackerProvider) =>
+                          trackerProvider.target,
+                      builder: (context, target, _) {
+                        //changes when the target changes.
+                        if (target != null)
+                          return Text("$target kg",
+                              style: Theme.of(context).textTheme.bodyText1);
 
-                            return SizedBox();
-                          }),
-                    ],
+                        return SizedBox();
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -131,55 +108,59 @@ class BodyWeightTrackerScreenBody extends StatelessWidget {
             elevation: 5,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: MediaQuery.of(context).size.height / 2.1,
-                  maxWidth: double.infinity,
-                ),
-                child: Selector<BodyWeightTrackerProvider, bool>(
-                    selector: (context, bodyWeightAndStrengthTrackerProvider) =>
-                        bodyWeightAndStrengthTrackerProvider.refreshDataFlag,
-                    builder: (context, _, __) {
-                      ///The body weight tracker rebuilds and queries Cloud Firestore Weight Records Col again when the refreshDataFlag changes.
-                      ///This happens when user scrolls the date bar and changes the date range.
-                      ///The tracker is built after data has been fetched from the database.
-                      return FutureBuilder(
-                        future: bodyWeightTrackerProvider.fetchData(),
-                        builder: (
-                          context,
-                          snapshot,
-                        ) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting)
-                            return Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          else {
-                            if (snapshot.hasError) {
-                              print(snapshot.error);
+              child: LayoutBuilder(builder: (context, constraints) {
+                return ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: constraints.maxWidth,
+                    maxWidth: double.infinity,
+                  ),
+                  child: Selector<BodyWeightTrackerProvider, bool>(
+                      selector: (context, bodyWeightTrackerProvider) =>
+                          bodyWeightTrackerProvider.refreshDataFlag,
+                      builder: (context, _, __) {
+                        ///The body weight tracker rebuilds and queries Cloud Firestore Weight Records Col again when the refreshDataFlag changes.
+                        ///This happens when user scrolls the date bar and changes the date range.
+                        ///The tracker is built after data has been fetched from the database.
+                        return FutureBuilder(
+                          future: bodyWeightTrackerProvider.fetchData(),
+                          builder: (
+                            context,
+                            snapshot,
+                          ) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting)
                               return Center(
-                                child: Text(
-                                  Strings.errorMessage,
-                                  style: Theme.of(context).textTheme.bodyText1,
-                                ),
+                                child: CircularProgressIndicator(),
                               );
-                            } else {
-                              return Selector<BodyWeightTrackerProvider, bool>(
-                                selector: (context, weightTrackerProvider) =>
-                                    weightTrackerProvider.refreshChartFlag,
-                                builder: (context, _, __) {
-                                  ///Chart rebuilds when the refreshChartFlag is changed
-                                  ///The happens when user adds new weight record to a date that is contained within current the date range.
-                                  ///This is so data is reflected instantly in chart without having to get data from firebase again.
-                                  return BodyWeightTrackerChart();
-                                },
-                              );
+                            else {
+                              if (snapshot.hasError) {
+                                print(snapshot.error);
+                                return Center(
+                                  child: Text(
+                                    Strings.errorMessage,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                  ),
+                                );
+                              } else {
+                                return Selector<BodyWeightTrackerProvider,
+                                    bool>(
+                                  selector: (context, weightTrackerProvider) =>
+                                      weightTrackerProvider.refreshChartFlag,
+                                  builder: (context, _, __) {
+                                    ///Chart rebuilds when the refreshChartFlag is changed
+                                    ///The happens when user adds new weight record to a date that is contained within current the date range.
+                                    ///This is so data is reflected instantly in chart without having to get data from firebase again.
+                                    return BodyWeightTrackerChart();
+                                  },
+                                );
+                              }
                             }
-                          }
-                        },
-                      );
-                    }),
-              ),
+                          },
+                        );
+                      }),
+                );
+              }),
             ),
           ),
         ],

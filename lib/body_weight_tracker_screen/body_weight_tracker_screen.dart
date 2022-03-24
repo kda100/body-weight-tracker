@@ -17,7 +17,7 @@ import 'body_weight_tracker_screen_body.dart';
 class BodyWeightTrackerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final BodyWeightTrackerProvider bodyWeightAndStrengthTrackerProvider =
+    final BodyWeightTrackerProvider bodyWeightTrackerProvider =
         Provider.of<BodyWeightTrackerProvider>(
       context,
       listen: false,
@@ -28,13 +28,12 @@ class BodyWeightTrackerScreen extends StatelessWidget {
         context: context,
         builder: (context) => WeightDialog(
           form: ChangeNotifierProvider.value(
-              value: bodyWeightAndStrengthTrackerProvider,
-              child: AddWeightRecordForm()),
+              value: bodyWeightTrackerProvider, child: AddWeightRecordForm()),
         ),
       );
       if (weightRecord != null) {
         UpdateStatus updateStatus =
-            await bodyWeightAndStrengthTrackerProvider.verifyNewWeightRecord(
+            await bodyWeightTrackerProvider.verifyNewWeightRecord(
           weightRecord: weightRecord,
         ); //gets the UpdateStatus of the weight record the user would like to add
         if (updateStatus == UpdateStatus.OVERWRITE) {
@@ -47,11 +46,11 @@ class BodyWeightTrackerScreen extends StatelessWidget {
             ),
           );
           if (result != null && result) {
-            updateStatus = await bodyWeightAndStrengthTrackerProvider
+            updateStatus = await bodyWeightTrackerProvider
                 .addAndDeleteWeightRecord(weightRecord: weightRecord);
           } else {
             //if user does not want to overwrite data, overwrite Docs are removed.
-            bodyWeightAndStrengthTrackerProvider.removeOverwriteDocs();
+            bodyWeightTrackerProvider.removeOverwriteDocs();
           }
         }
         if (updateStatus == UpdateStatus.ERROR) {
@@ -74,8 +73,7 @@ class BodyWeightTrackerScreen extends StatelessWidget {
       );
       if (target != null) {
         final UpdateStatus updateStatus =
-            await bodyWeightAndStrengthTrackerProvider.setNewTarget(
-                target: target);
+            await bodyWeightTrackerProvider.setNewTarget(target: target);
         if (updateStatus == UpdateStatus.ERROR) {
           await showDialog(
             context: context,
@@ -94,7 +92,7 @@ class BodyWeightTrackerScreen extends StatelessWidget {
         ),
       );
       if (result != null && result) {
-        await bodyWeightAndStrengthTrackerProvider.removeTarget();
+        await bodyWeightTrackerProvider.removeTarget();
       }
     }
 
