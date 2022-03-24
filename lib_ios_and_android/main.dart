@@ -8,6 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'body_weight_tracker_screen/body_weight_tracker_screen.dart';
+import 'constants/fonts.dart';
 import 'constants/strings.dart';
 import 'constants/color_palette.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
@@ -23,7 +24,6 @@ Future<void> main() async {
 }
 
 class BodyWeightTrackerApp extends StatelessWidget {
-  static const String fontFamily = "Avro";
   @override
   Widget build(BuildContext context) {
     return KeyboardDismissOnTap(
@@ -37,20 +37,21 @@ class BodyWeightTrackerApp extends StatelessWidget {
             scaffoldBackgroundColor: ColorPalette.backGroundColor,
             textTheme: CupertinoTextThemeData(
               navActionTextStyle: TextStyle(
-                  fontFamily: fontFamily,
+                  fontFamily: Fonts.fontFamily,
                   color: ColorPalette.primaryTextColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 14),
               textStyle: TextStyle(
-                  fontFamily: fontFamily, color: ColorPalette.primaryTextColor),
+                  fontFamily: Fonts.fontFamily,
+                  color: ColorPalette.primaryTextColor),
               navTitleTextStyle: TextStyle(
-                fontFamily: fontFamily,
+                fontFamily: Fonts.fontFamily,
                 fontWeight: FontWeight.bold,
                 color: ColorPalette.secondaryTextColor,
               ),
               primaryColor: ColorPalette.primaryTextColor,
               actionTextStyle: TextStyle(
-                fontFamily: fontFamily,
+                fontFamily: Fonts.fontFamily,
                 color: ColorPalette.primaryTextColor,
               ),
             ),
@@ -91,7 +92,7 @@ class BodyWeightTrackerApp extends StatelessWidget {
             appBarTheme: AppBarTheme(color: ColorPalette.darkPrimaryColor),
             floatingActionButtonTheme: FloatingActionButtonThemeData(
                 backgroundColor: ColorPalette.darkPrimaryColor),
-            fontFamily: fontFamily,
+            fontFamily: Fonts.fontFamily,
             scaffoldBackgroundColor: ColorPalette.backGroundColor,
           ),
         ),

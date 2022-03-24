@@ -114,7 +114,7 @@ class BodyWeightTrackerScreenBody extends StatelessWidget {
                 builder: (context, constraints) {
                   return ConstrainedBox(
                     constraints: BoxConstraints(
-                      maxHeight: constraints.maxWidth,
+                      maxHeight: constraints.maxWidth * 0.9,
                       maxWidth: double.infinity,
                     ),
                     child: Selector<BodyWeightTrackerProvider, bool>(

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:provider/provider.dart';
 
+import '../constants/fonts.dart';
 import '../providers/body_weight_tracker_provider.dart';
 
 ///Interactive chart to display user weight records and target.
@@ -75,6 +76,11 @@ class BodyWeightTrackerChart extends StatelessWidget {
             transitionFormat: 'dd MMM',
           ),
         ),
+        renderSpec: charts.SmallTickRendererSpec(
+          labelStyle: charts.TextStyleSpec(
+            fontFamily: Fonts.fontFamily,
+          ),
+        ),
         viewport: charts.DateTimeExtents(
           start: bodyWeightTrackerProvider.dateTimeRange.start,
           end: bodyWeightTrackerProvider.dateTimeRange.end,
@@ -88,6 +94,7 @@ class BodyWeightTrackerChart extends StatelessWidget {
           desiredMaxRows: 1,
           entryTextStyle: charts.TextStyleSpec(
             color: charts.Color.black,
+            fontFamily: Fonts.fontFamily,
           ),
           cellPadding: EdgeInsets.only(
             right: 8,
@@ -102,6 +109,11 @@ class BodyWeightTrackerChart extends StatelessWidget {
         tickProviderSpec: charts.BasicNumericTickProviderSpec(
           desiredMinTickCount: 5,
           desiredMaxTickCount: 10,
+        ),
+        renderSpec: charts.GridlineRendererSpec(
+          labelStyle: charts.TextStyleSpec(
+            fontFamily: Fonts.fontFamily,
+          ),
         ),
         showAxisLine: true,
         viewport: charts.NumericExtents(
