@@ -85,7 +85,7 @@ class BodyWeightTrackerApp extends StatelessWidget {
             ),
             appBarTheme: AppBarTheme(
               color: ColorPalette.darkPrimaryColor,
-              TextStyle(
+              titleTextStyle: TextStyle(
                 fontFamily: Fonts.fontFamily,
                 color: ColorPalette.secondaryTextColor,
                 fontSize: 18,
