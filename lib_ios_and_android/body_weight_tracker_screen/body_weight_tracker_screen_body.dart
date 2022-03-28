@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../constants/text_styles.dart';
 import '../providers/body_weight_tracker_provider.dart';
 import 'scrollable_date_bar.dart';
 import 'body_weight_tracker_chart.dart';
@@ -29,13 +30,10 @@ class BodyWeightTrackerScreenBody extends StatelessWidget {
               selector: (context, bodyWeightAndStrengthTrackerProvider) =>
                   bodyWeightAndStrengthTrackerProvider.dateTimeRange,
               builder: (context, dateTimeRange, _) => Text(
-                "${DateTimeHelper.formatDateTimeToDayMonthYearString(dateTimeRange.start)} - ${DateTimeHelper.formatDateTimeToDayMonthYearString(
-                  dateTimeRange.end,
-                )}",
-                style: Platform.isAndroid
-                    ? Theme.of(context).textTheme.headline1
-                    : CupertinoTheme.of(context).textTheme.navActionTextStyle,
-              ),
+                  "${DateTimeHelper.formatDateTimeToDayMonthYearString(dateTimeRange.start)} - ${DateTimeHelper.formatDateTimeToDayMonthYearString(
+                    dateTimeRange.end,
+                  )}",
+                  style: TextStyles.dateScrollableDateBarTextStyle),
             ),
             onDecrease: bodyWeightTrackerProvider.subtractQuarter,
             onIncrease: bodyWeightTrackerProvider.addQuarter,

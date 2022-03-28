@@ -45,28 +45,23 @@ class _AddWeightRecordFormState extends State<AddWeightRecordForm> {
               : Theme.of(context).textTheme.headline1,
         ),
         SizedBox(
-          height: 10,
+          height: 5,
         ),
-        Column(
-          children: [
-            Form(
-              key: _addWeightRecordFormKey,
-              child: Column(
-                children: [
-                  DateFormField(
-                    onSaved: (value) {
-                      date =
-                          DateTimeHelper.formatDDMMYYYYStringToDateTime(value);
-                    },
-                    textEditingController: _dateTextEditingController,
-                  ),
-                  WeightFormField(onSaved: (value) {
-                    weight = double.parse(value!);
-                  })
-                ],
+        Form(
+          key: _addWeightRecordFormKey,
+          child: Column(
+            children: [
+              DateFormField(
+                onSaved: (value) {
+                  date = DateTimeHelper.formatDDMMYYYYStringToDateTime(value);
+                },
+                textEditingController: _dateTextEditingController,
               ),
-            ),
-          ],
+              WeightFormField(onSaved: (value) {
+                weight = double.parse(value!);
+              })
+            ],
+          ),
         ),
         PlatformTextButton(
           onPressed: () {
@@ -81,17 +76,19 @@ class _AddWeightRecordFormState extends State<AddWeightRecordForm> {
                 );
             }
           },
-          child: PlatformText("Add",),
+          child: PlatformText(
+            "Add",
+          ),
           padding: EdgeInsets.zero,
         ),
-        if(Platform.isIOS)
-        PlatformTextButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: PlatformText("Cancel"),
-          padding: EdgeInsets.zero,
-        ),
+        if (Platform.isIOS)
+          PlatformTextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: PlatformText("Cancel"),
+            padding: EdgeInsets.zero,
+          ),
       ],
     );
   }

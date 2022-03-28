@@ -60,14 +60,16 @@ class _SetTargetFormState extends State<SetTargetForm> {
             }
           },
           child: Text("Set"),
+          padding: EdgeInsets.zero,
         ),
-        if(Platform.isIOS)
-        PlatformTextButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text("Cancel"),
-        ),
+        if (Platform.isIOS)
+          PlatformTextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("Cancel"),
+            padding: EdgeInsets.zero,
+          ),
       ],
     );
   }

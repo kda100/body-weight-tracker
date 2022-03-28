@@ -12,12 +12,21 @@ class WeightDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Widget widget = Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: form,
+    );
     return Center(
       child: SingleChildScrollView(
-        child: Dialog(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: form,
+        child: PlatformWidget(
+          material: (_, __) => Dialog(
+            child: widget,
+          ),
+          cupertino: (_, __) => Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: widget,
           ),
         ),
       ),

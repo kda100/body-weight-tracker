@@ -60,9 +60,10 @@ class _BodyWeightTrackerScreenState extends State<BodyWeightTrackerScreen> {
           weightRecord: weightRecord,
         ); //gets the UpdateStatus of the weight record the user would like to add
         if (updateStatus == UpdateStatus.OVERWRITE) {
-          final bool? result = await showPlatformDialog(
+          final bool? result = await showDialog(
             //asks user if they would like to overwrite weight record in firebase collection.
             context: context,
+            barrierDismissible: Platform.isIOS ? false : true,
             builder: (context) => ActionableAlertDialog(
               title:
                   "A record for this date exists, are you sure you want to overwrite?",
@@ -78,8 +79,9 @@ class _BodyWeightTrackerScreenState extends State<BodyWeightTrackerScreen> {
         }
         if (updateStatus == UpdateStatus.ERROR) {
           //informs user action did not perform as intended.
-          await showPlatformDialog(
+          await showDialog(
             context: context,
+            barrierDismissible: Platform.isIOS ? false : true,
             builder: (context) =>
                 DismissibleAlertDialog(title: Strings.errorMessage),
           );
@@ -99,8 +101,9 @@ class _BodyWeightTrackerScreenState extends State<BodyWeightTrackerScreen> {
         final UpdateStatus updateStatus =
             await bodyWeightTrackerProvider.setNewTarget(target: target);
         if (updateStatus == UpdateStatus.ERROR) {
-          await showPlatformDialog(
+          await showDialog(
             context: context,
+            barrierDismissible: Platform.isIOS ? false : true,
             builder: (context) =>
                 DismissibleAlertDialog(title: Strings.errorMessage),
           );
@@ -109,8 +112,9 @@ class _BodyWeightTrackerScreenState extends State<BodyWeightTrackerScreen> {
     }
 
     void removeTarget() async {
-      final bool? result = await showPlatformDialog(
+      final bool? result = await showDialog(
         context: context,
+        barrierDismissible: Platform.isIOS ? false : true,
         builder: (context) => ActionableAlertDialog(
           title: "Are you sure you want to remove your target?",
         ),

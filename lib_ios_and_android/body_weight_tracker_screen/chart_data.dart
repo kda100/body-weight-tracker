@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../constants/text_styles.dart';
+
 class ChartData extends StatelessWidget {
   final String header;
   final Widget data;
@@ -18,9 +20,7 @@ class ChartData extends StatelessWidget {
       children: [
         Text(
           header,
-          style: Platform.isIOS
-              ? CupertinoTheme.of(context).textTheme.navActionTextStyle
-              : Theme.of(context).textTheme.headline1,
+          style: TextStyles.headerTextStyle,
         ),
         SizedBox(
           height: 5,

@@ -53,18 +53,13 @@ class DateFormField extends StatelessWidget {
         }
       },
       cupertino: (_, __) => CupertinoTextFormFieldData(
-        padding: EdgeInsets.all(8.0),
-        placeholder: "Date",
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
             5,
           ),
           color: Colors.grey.withOpacity(0.15),
         ),
-        prefix: Padding(
-          padding: const EdgeInsets.only(right: 8.0),
-          child: Icon(CupertinoIcons.calendar),
-        )
+        placeholder: "Date",
       ),
       material: (_, __) => MaterialTextFormFieldData(
         decoration: InputDecoration(

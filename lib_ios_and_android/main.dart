@@ -13,6 +13,8 @@ import 'constants/strings.dart';
 import 'constants/color_palette.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
+import 'constants/text_styles.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -37,17 +39,17 @@ class BodyWeightTrackerApp extends StatelessWidget {
             scaffoldBackgroundColor: ColorPalette.backGroundColor,
             textTheme: CupertinoTextThemeData(
               navActionTextStyle: TextStyle(
-                  fontFamily: Fonts.fontFamily,
-                  color: ColorPalette.primaryTextColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14),
-              textStyle: TextStyle(
-                  fontFamily: Fonts.fontFamily,
-                  color: ColorPalette.primaryTextColor),
+                fontFamily: Fonts.fontFamily,
+                color: ColorPalette.primaryTextColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
+              textStyle: TextStyles.primaryTextStyle,
               navTitleTextStyle: TextStyle(
                 fontFamily: Fonts.fontFamily,
-                fontWeight: FontWeight.bold,
                 color: ColorPalette.secondaryTextColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
               ),
               primaryColor: ColorPalette.primaryTextColor,
               actionTextStyle: TextStyle(
@@ -60,24 +62,21 @@ class BodyWeightTrackerApp extends StatelessWidget {
         material: (_, __) => MaterialAppData(
           theme: ThemeData(
             colorScheme: Theme.of(context).colorScheme.copyWith(
-                primary: ColorPalette.primaryColor,
-                secondary: ColorPalette.accentColor,
-                background: ColorPalette.backGroundColor),
+                  primary: ColorPalette.primaryColor,
+                  secondary: ColorPalette.accentColor,
+                  background: ColorPalette.backGroundColor,
+                ),
             popupMenuTheme: PopupMenuThemeData(
               color: ColorPalette.backGroundColor,
               elevation: 5,
+            ),
+            textTheme: TextTheme(
+              bodyText2: TextStyles.primaryTextStyle,
             ),
             primaryColor: ColorPalette.primaryColor,
             primaryColorDark: ColorPalette.darkPrimaryColor,
             primaryColorLight: ColorPalette.lightPrimaryColor,
             dividerColor: ColorPalette.borderColor,
-            textTheme: TextTheme(
-              headline1: TextStyle(
-                color: ColorPalette.primaryTextColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            ),
             dialogTheme: DialogTheme(
               backgroundColor: ColorPalette.backGroundColor,
             ),

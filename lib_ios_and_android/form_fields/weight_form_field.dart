@@ -52,10 +52,6 @@ class WeightFormField extends StatelessWidget {
           ),
           color: Colors.grey.withOpacity(0.15),
         ),
-        prefix: Padding(
-          padding: const EdgeInsets.only(right: 8.0),
-          child: Icon(Icons.fitness_center),
-        ),
       ),
     );
   }
