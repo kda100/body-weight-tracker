@@ -40,7 +40,12 @@ class BodyWeightTrackerApp extends StatelessWidget {
             textTheme: CupertinoTextThemeData(
               navActionTextStyle: TextStyles.primaryHeaderTextStyle,
               textStyle: TextStyles.primaryTextStyle,
-              navTitleTextStyle: TextStyles.secondaryHeaderTextStyle,
+              navTitleTextStyle: TextStyle(
+                fontFamily: Fonts.fontFamily,
+                color: ColorPalette.secondaryTextColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
               primaryColor: ColorPalette.primaryTextColor,
               actionTextStyle: TextStyles.secondaryTextStyle,
               dateTimePickerTextStyle: TextStyles.primaryTextStyle.copyWith(
@@ -80,7 +85,11 @@ class BodyWeightTrackerApp extends StatelessWidget {
             ),
             appBarTheme: AppBarTheme(
               color: ColorPalette.darkPrimaryColor,
-              titleTextStyle: TextStyles.secondaryHeaderTextStyle,
+              TextStyle(
+                fontFamily: Fonts.fontFamily,
+                color: ColorPalette.secondaryTextColor,
+                fontSize: 18,
+              ),
             ),
             floatingActionButtonTheme: FloatingActionButtonThemeData(
                 backgroundColor: ColorPalette.darkPrimaryColor),
