@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
+import '../constants/text_styles.dart';
+
 ///Form that allows user to add a target for their body weight tracker.
 ///This validates the users inputs for the target.
 
@@ -23,9 +25,7 @@ class _SetTargetFormState extends State<SetTargetForm> {
       children: [
         Text(
           "Set New Target",
-          style: Platform.isIOS
-              ? CupertinoTheme.of(context).textTheme.navActionTextStyle
-              : Theme.of(context).textTheme.headline1,
+          style: TextStyles.primaryHeaderTextStyle,
         ),
         SizedBox(
           height: 10,

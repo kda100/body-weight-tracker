@@ -1,5 +1,6 @@
 import 'package:body_weight_tracker/constants/color_palette.dart';
 import 'package:body_weight_tracker/constants/strings.dart';
+import 'package:body_weight_tracker/constants/text_styles.dart';
 import 'package:body_weight_tracker/dialogs/actionable_alert_dialog.dart';
 import 'package:body_weight_tracker/dialogs/dismissible_alert_dialog.dart';
 import 'package:body_weight_tracker/dialogs/weight_dialog.dart';
@@ -41,7 +42,6 @@ class _BodyWeightTrackerScreenState extends State<BodyWeightTrackerScreen> {
       context,
       listen: false,
     );
-    print("screen rebuilt");
 
     void addWeightRecord() async {
       final WeightRecord? weightRecord = await showDialog(
@@ -136,6 +136,16 @@ class _BodyWeightTrackerScreenState extends State<BodyWeightTrackerScreen> {
       }
     }
 
+    CupertinoPopupMenuOptionData _getCupertinoPopupMenuOptionData(
+        {required String label}) {
+      return CupertinoPopupMenuOptionData(
+        child: Text(
+          label,
+          style: TextStyles.popupMenuLabelTextStyle,
+        ),
+      );
+    }
+
     return PlatformScaffold(
       appBar: PlatformAppBar(
         cupertino: (_, __) => CupertinoNavigationBarData(
@@ -175,26 +185,37 @@ class _BodyWeightTrackerScreenState extends State<BodyWeightTrackerScreen> {
             options: [
               // pop up menu items.
               PopupMenuOption(
+                cupertino: (_, __) => _getCupertinoPopupMenuOptionData(
+                  label: MenuItem.addNewRecord,
+                ),
                 label: MenuItem.addNewRecord,
                 onTap: (_) {
                   addWeightRecord();
                 },
               ),
               PopupMenuOption(
+                cupertino: (_, __) => _getCupertinoPopupMenuOptionData(
                   label: MenuItem.setNewTarget,
-                  onTap: (_) {
-                    setNewTarget();
-                  }),
+                ),
+                label: MenuItem.setNewTarget,
+                onTap: (_) {
+                  setNewTarget();
+                },
+              ),
               PopupMenuOption(
+                cupertino: (_, __) => _getCupertinoPopupMenuOptionData(
                   label: MenuItem.removeTarget,
-                  onTap: (_) {
-                    removeTarget();
-                  }),
+                ),
+                label: MenuItem.removeTarget,
+                onTap: (_) {
+                  removeTarget();
+                },
+              ),
             ],
             icon: Icon(
-              Platform.isAndroid
-                  ? Icons.more_vert
-                  : CupertinoIcons.ellipsis_vertical_circle,
+              Platform.isIOS
+                  ? CupertinoIcons.ellipsis_vertical_circle
+                  : Icons.more_vert,
               color: ColorPalette.appBarIconColor,
             ),
             // icon: Icon(Icons.more_vert),

@@ -39,9 +39,6 @@ class WeightFormField extends StatelessWidget {
           icon: Icon(Icons.fitness_center),
           labelText: "Weight (kg)",
           hintText: "Weight (kg)",
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Theme.of(context).primaryColor),
-          ),
         ),
       ),
       cupertino: (_, __) => CupertinoTextFormFieldData(

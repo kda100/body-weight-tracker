@@ -20,7 +20,7 @@ class ChartData extends StatelessWidget {
       children: [
         Text(
           header,
-          style: TextStyles.headerTextStyle,
+          style: TextStyles.primaryHeaderTextStyle,
         ),
         SizedBox(
           height: 5,

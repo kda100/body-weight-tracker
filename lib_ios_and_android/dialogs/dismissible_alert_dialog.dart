@@ -1,3 +1,4 @@
+import 'package:body_weight_tracker/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
@@ -11,7 +12,10 @@ class DismissibleAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformAlertDialog(
-      title: Text(title),
+      title: Text(
+        title,
+        style: TextStyles.alertDialogTextStyle,
+      ),
       actions: [
         PlatformTextButton(
           onPressed: () {

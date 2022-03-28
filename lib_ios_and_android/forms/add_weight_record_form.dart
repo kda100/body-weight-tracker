@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:body_weight_tracker/constants/text_styles.dart';
 import 'package:body_weight_tracker/providers/body_weight_tracker_provider.dart';
 import 'package:body_weight_tracker/form_fields/date_form_field.dart';
 import 'package:body_weight_tracker/form_fields/weight_form_field.dart';
@@ -40,9 +41,7 @@ class _AddWeightRecordFormState extends State<AddWeightRecordForm> {
       children: [
         PlatformText(
           "Add Weight Record",
-          style: Platform.isIOS
-              ? CupertinoTheme.of(context).textTheme.navActionTextStyle
-              : Theme.of(context).textTheme.headline1,
+          style: TextStyles.primaryHeaderTextStyle,
         ),
         SizedBox(
           height: 5,

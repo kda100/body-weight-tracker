@@ -1,3 +1,4 @@
+import 'package:body_weight_tracker/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
@@ -14,9 +15,7 @@ class ActionableAlertDialog extends StatelessWidget {
     return PlatformAlertDialog(
       content: Text(
         title,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
+        style: TextStyles.alertDialogTextStyle,
       ),
       actions: [
         PlatformTextButton(
