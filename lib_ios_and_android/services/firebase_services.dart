@@ -7,12 +7,11 @@ import '../models/weight_record_with_id.dart';
 
 ///class that is responsible for communication of data between the firestore backend and the
 ///body weight tracker provider.
-
 class FirebaseServices {
   CollectionReference? _weightRecordsColRef = FirebaseFirestore.instance
-      .collection("weightRecords"); //ColRef where weight records will be store.
+      .collection("Your weight records col ref"); //ColRef where weight records will be store.
   DocumentReference? _targetDocRef = FirebaseFirestore.instance
-      .doc("userId/targetDoc"); //DocRef where target will be stored
+      .doc("Your target doc ref"); //DocRef where target will be stored
   final Duration _timeOutDuration = Duration(seconds: 3);
 
   List<QueryDocumentSnapshot>? _overwriteDocs;
