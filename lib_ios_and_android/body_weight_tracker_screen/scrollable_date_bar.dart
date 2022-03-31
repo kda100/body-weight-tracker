@@ -42,12 +42,11 @@ class ScrollableDateBar extends StatelessWidget {
                   material: (_, __) => MaterialIconButtonData(
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-                    padding: EdgeInsets.zero,
                     constraints: BoxConstraints(),
                   ),
-                  cupertino: (_, __) =>
-                      CupertinoIconButtonData(padding: EdgeInsets.zero),
+                  cupertino: (_, __) => CupertinoIconButtonData(minSize: 0),
                   onPressed: onDecrease,
+                  padding: EdgeInsets.zero,
                   icon: Icon(
                     Icons.keyboard_arrow_left,
                     color: ColorPalette.primaryIconColor,
@@ -61,13 +60,11 @@ class ScrollableDateBar extends StatelessWidget {
                   material: (_, __) => MaterialIconButtonData(
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-                    padding: EdgeInsets.zero,
                     constraints: BoxConstraints(),
                   ),
-                  cupertino: (_, __) => CupertinoIconButtonData(
-                    padding: EdgeInsets.zero,
-                  ),
+                  cupertino: (_, __) => CupertinoIconButtonData(minSize: 0),
                   onPressed: onIncrease,
+                  padding: EdgeInsets.zero,
                   icon: Icon(
                     Icons.keyboard_arrow_right,
                     color: ColorPalette.primaryIconColor,
