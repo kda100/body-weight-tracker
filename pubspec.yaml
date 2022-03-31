@@ -20,6 +20,7 @@ dependencies:
   charts_flutter: ^0.12.0
   cupertino_icons: ^1.0.1
   flutter_platform_widgets: ^1.20.0
+  flutter_screenutil: ^5.3.1
 
 dev_dependencies:
   flutter_test:
