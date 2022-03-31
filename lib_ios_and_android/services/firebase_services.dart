@@ -10,9 +10,9 @@ import '../models/weight_record_with_id.dart';
 
 class FirebaseServices {
   CollectionReference? _weightRecordsColRef = FirebaseFirestore.instance
-      .collection("weightRecords"); //ColRef where weight records will be store.
+      .collection("Your Weight Records Collection"); //ColRef where weight records will be store.
   DocumentReference? _targetDocRef = FirebaseFirestore.instance
-      .doc("userId/targetDoc"); //DocRef where target will be stored
+      .doc("Your Target Doc"); //DocRef where target will be stored
   final Duration _timeOutDuration = Duration(seconds: 3);
 
   List<QueryDocumentSnapshot>? _overwriteDocs;
