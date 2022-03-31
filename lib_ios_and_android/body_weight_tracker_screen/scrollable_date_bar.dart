@@ -21,8 +21,8 @@ class ScrollableDateBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: 4.w,
-        vertical: 4.h,
+        horizontal: 6.w,
+        vertical: 6.h,
       ),
       alignment: Alignment.centerLeft,
       decoration: BoxDecoration(
