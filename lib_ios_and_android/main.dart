@@ -105,11 +105,7 @@ class BodyWeightTrackerApp extends StatelessWidget {
           builder: (context, widget) {
             //add this line
             ScreenUtil.setContext(context);
-            return MediaQuery(
-              //Setting font does not change with system font size
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              child: widget!,
-            );
+            return  widget!;
           },
           localizationsDelegates: GlobalMaterialLocalizations.delegates,
           supportedLocales: [
