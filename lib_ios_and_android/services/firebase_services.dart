@@ -9,6 +9,14 @@ import '../models/weight_record_with_id.dart';
 ///body weight tracker provider.
 
 class FirebaseServices {
+  static final FirebaseServices _instance = FirebaseServices._();
+
+  FirebaseServices._();
+
+  factory FirebaseServices() {
+    return _instance;
+  }
+  
   CollectionReference? _weightRecordsColRef = FirebaseFirestore.instance
       .collection("weightRecords"); //ColRef where weight records will be store.
   DocumentReference? _targetDocRef = FirebaseFirestore.instance
