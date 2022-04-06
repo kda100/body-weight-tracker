@@ -9,10 +9,18 @@ import '../models/weight_record_with_id.dart';
 ///body weight tracker provider.
 
 class FirebaseServices {
+  static final FirebaseServices _instance = FirebaseServices._();
+
+  FirebaseServices._();
+
+  factory FirebaseServices() {
+    return _instance;
+  }
+  
   CollectionReference? _weightRecordsColRef = FirebaseFirestore.instance
-      .collection("weightRecords"); //ColRef where weight records will be store.
+      .collection("Your weight records collection"); //ColRef where weight records will be store.
   DocumentReference? _targetDocRef = FirebaseFirestore.instance
-      .doc("userId/targetDoc"); //DocRef where target will be stored
+      .doc("Your target doc"); //DocRef where target will be stored
   final Duration _timeOutDuration = Duration(seconds: 3);
 
   List<QueryDocumentSnapshot>? _overwriteDocs;
