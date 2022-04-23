@@ -39,7 +39,7 @@ class FirebaseServices {
                   FieldNames.dateField,
                   isGreaterThanOrEqualTo: dateTimeRange.start,
                   isLessThanOrEqualTo: dateTimeRange.end,
-                )
+                ).orderBy(FieldNames.dateField)
                 .get())
             ?.docs;
     queryDocSnapshot?.forEach((docSnapshot) {
