@@ -36,7 +36,7 @@ class BodyWeightTrackerApp extends StatelessWidget {
           360,
           752,
         ),
-        builder: () => PlatformApp(
+        builder: (_) => PlatformApp(
           cupertino: (_, __) => CupertinoAppData(
             theme: CupertinoThemeData(
               primaryColor: ColorPalette.primaryColor,
