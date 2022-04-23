@@ -49,10 +49,7 @@ class _BodyWeightTrackerScreenState extends State<BodyWeightTrackerScreen> {
         context: context,
         barrierDismissible: Platform.isIOS ? false : true,
         builder: (context) => WeightDialog(
-          form: ChangeNotifierProvider.value(
-            value: bodyWeightTrackerProvider,
-            child: AddWeightRecordForm(),
-          ),
+          form: AddWeightRecordForm(),
         ),
       );
       if (weightRecord != null) {
