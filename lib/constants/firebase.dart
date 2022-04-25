@@ -1,5 +1,5 @@
-const String targetDocRef = "userId/targetDoc";
-const String weightRecordsColRef = "weightRecords";
+const String targetDocPath = "userId/targetDoc";
+const String weightRecordsColPath = "weightRecords";
 
 class FieldNames {
   static const String dateField = "date";
