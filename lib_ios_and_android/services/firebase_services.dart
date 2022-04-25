@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
-import '../constants/field_names.dart';
+import '../constants/firebase.dart';
 import '../models/update_status.dart';
 import '../models/weight_record_with_id.dart';
 
@@ -16,11 +15,12 @@ class FirebaseServices {
   factory FirebaseServices() {
     return _instance;
   }
-  
+
   CollectionReference? _weightRecordsColRef = FirebaseFirestore.instance
-      .collection("weightRecords"); //ColRef where weight records will be store.
+      .collection(
+          weightRecordsColRef); //ColRef where weight records will be store.
   DocumentReference? _targetDocRef = FirebaseFirestore.instance
-      .doc("userId/targetDoc"); //DocRef where target will be stored
+      .doc(targetDocRef); //DocRef where target will be stored
   final Duration _timeOutDuration = Duration(seconds: 3);
 
   List<QueryDocumentSnapshot>? _overwriteDocs;
@@ -39,7 +39,7 @@ class FirebaseServices {
                   FieldNames.dateField,
                   isGreaterThanOrEqualTo: dateTimeRange.start,
                   isLessThanOrEqualTo: dateTimeRange.end,
-                ).orderBy(FieldNames.dateField)
+                )
                 .get())
             ?.docs;
     queryDocSnapshot?.forEach((docSnapshot) {
