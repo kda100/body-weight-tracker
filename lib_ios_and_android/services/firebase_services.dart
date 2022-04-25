@@ -18,9 +18,9 @@ class FirebaseServices {
 
   CollectionReference? _weightRecordsColRef = FirebaseFirestore.instance
       .collection(
-          weightRecordsColRef); //ColRef where weight records will be store.
+          weightRecordsColPath); //ColRef where weight records will be store.
   DocumentReference? _targetDocRef = FirebaseFirestore.instance
-      .doc(targetDocRef); //DocRef where target will be stored
+      .doc(targetDocPath); //DocRef where target will be stored
   final Duration _timeOutDuration = Duration(seconds: 3);
 
   List<QueryDocumentSnapshot>? _overwriteDocs;
