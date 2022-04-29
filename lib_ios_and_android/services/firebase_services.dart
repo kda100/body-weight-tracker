@@ -23,10 +23,10 @@ class FirebaseServices {
       .doc(targetDocPath); //DocRef where target will be stored
   final Duration _timeOutDuration = Duration(seconds: 3);
 
-  List<QueryDocumentSnapshot>? _overwriteDocs;
+  List<String>? _overwriteIds;
 
-  removeOverwriteDocs() {
-    _overwriteDocs = null;
+  removeOverwriteIds() {
+    _overwriteIds = null;
   }
 
   ///This function fetches Weight Records from Firestore and returns List<WeightRecord> and returns to body weight tracker provider.
@@ -87,8 +87,9 @@ class FirebaseServices {
       return UpdateStatus.ERROR;
     }
     if (queryDocSnapshot != null && queryDocSnapshot.length > 0) {
-      _overwriteDocs =
-          queryDocSnapshot; // saves a reference to docs to be overwritten.
+      _overwriteIds = queryDocSnapshot
+          .map((docSnap) => docSnap.id)
+          .toList(); // saves a reference to docs to be overwritten.
       return UpdateStatus.OVERWRITE;
     }
     return UpdateStatus.SUCCESS;
@@ -132,26 +133,25 @@ class FirebaseServices {
       {required double weight, required DateTime dateTime}) async {
     DocumentReference? documentReference;
     try {
-      final int overwriteDocsLen = _overwriteDocs?.length ?? 0;
+      final int overwriteDocsLen = _overwriteIds?.length ?? 0;
       for (int i = 0; i < overwriteDocsLen; i++) {
-        final QueryDocumentSnapshot? queryDocumentSnapshot = _overwriteDocs?[i];
+        final String? id = _overwriteIds?[i];
         if (i == overwriteDocsLen - 1) {
           //overwrite last doc in overwrite docs query.
-          documentReference =
-              _weightRecordsColRef?.doc(queryDocumentSnapshot?.id);
+          documentReference = _weightRecordsColRef?.doc(id);
           await documentReference?.update({
             FieldNames.weightField: weight,
           }).timeout(_timeOutDuration);
         } else //deletes any excess docs in the overwrite docs query.
           await _weightRecordsColRef
-              ?.doc(queryDocumentSnapshot?.id)
+              ?.doc(id)
               .delete()
               .timeout(_timeOutDuration);
       }
     } catch (e) {
       return null;
     }
-    removeOverwriteDocs();
+    removeOverwriteIds();
     if (documentReference != null) {
       return WeightRecordWithId(
         id: documentReference.id,
@@ -159,6 +159,7 @@ class FirebaseServices {
         weight: weight,
       );
     }
+    return null;
   }
 
   ///sets a new target field in the firestore doc where target field is held.
