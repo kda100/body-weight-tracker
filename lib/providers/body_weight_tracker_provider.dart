@@ -287,7 +287,6 @@ class BodyWeightTrackerProvider with ChangeNotifier {
       _setTargetWeightRecords();
       _adjustMaxAndMinWeightsWithRecords();
       _toggleRefreshChartFlag();
-      return UpdateStatus.SUCCESS;
     }
     return updateStatus;
   }
@@ -301,7 +300,6 @@ class BodyWeightTrackerProvider with ChangeNotifier {
       _targetWeightRecords.clear();
       _adjustMaxAndMinWeightsWithRecords();
       _toggleRefreshChartFlag();
-      return UpdateStatus.SUCCESS;
     }
     return updateStatus;
   }
